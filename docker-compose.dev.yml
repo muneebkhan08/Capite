@@ -1,0 +1,39 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - caption-data:/app/data
+    environment:
+      - FRONTEND_URL=http://localhost:3000
+      - MAX_FILE_SIZE_MB=500
+      - MAX_CONCURRENT_JOBS=2
+      - FLASK_DEBUG=true
+    command: python app.py
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - sqlite-data:/app/data
+    environment:
+      - BACKEND_URL=http://backend:5000
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
+      - DATABASE_URL=file:/app/data/captions.db
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  caption-data:
+  sqlite-data:

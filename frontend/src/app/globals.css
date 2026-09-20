@@ -1,0 +1,890 @@
+/* ============================================================
+   Caption faces — loaded for the live caption preview only.
+   Do not remove: these mirror the 13 fontName values in
+   caption-styles.config.json so the phone mockup matches render.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Bebas+Neue&family=Cinzel:wght@400;700;900&family=Inter:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,300..900;1,300..900&family=Orbitron:wght@500;700;900&family=Outfit:wght@300..900&family=Permanent+Marker&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,300..900;1,300..900&family=Rubik:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@400..700&family=Syne:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   1. PALETTE
+   ------------------------------------------------------------
+   A warm, natural, low-chroma system.
+
+   "Oat"  — the warm neutral spine. Every surface, border and
+            text colour derives from it. Hue sits around 45°,
+            chroma stays under 0.02, so the whole UI reads as
+            paper rather than screen. This deliberately replaces
+            Tailwind's cold blue-grey default further down.
+   Moss   — the primary. A forest green: fresh, organic, calm.
+   Lime   — the high-energy CTA fill. Always pairs with dark ink,
+            never with white.
+   Lemon / Clay / Sky / Iris — accent family for chips, status
+            and category tinting. Each has a pale "wash" tint
+            (100/200) for backgrounds and a saturated tone
+            (400/500) for text and icons on top of it.
+   ============================================================ */
+
+@theme {
+  /* --- Oat: warm neutral spine --------------------------- */
+  --color-oat-50:  #fefdfb;
+  --color-oat-100: #faf9f5;
+  --color-oat-150: #f6f4ef;
+  --color-oat-200: #f1efe8;
+  --color-oat-300: #e7e3da;
+  --color-oat-400: #dad4c8;
+  --color-oat-500: #b8b2a5;
+  --color-oat-600: #9f9b93;
+  --color-oat-700: #85817a;
+  --color-oat-800: #55534e;
+  --color-oat-900: #302f2c;
+  --color-oat-950: #1d1c1a;
+
+  /* --- Moss: primary ------------------------------------- */
+  --color-moss-50:  #f1f7f4;
+  --color-moss-100: #ddece5;
+  --color-moss-200: #bddccd;
+  --color-moss-300: #93c3ac;
+  --color-moss-400: #63a488;
+  --color-moss-500: #3e8968;
+  --color-moss-600: #2f6e53;
+  --color-moss-700: #285744;
+  --color-moss-800: #234639;
+  --color-moss-900: #1e3a30;
+  --color-moss-950: #10201a;
+
+  /* --- Lime: CTA ----------------------------------------- */
+  --color-lime-50:  #fbfde9;
+  --color-lime-100: #f4facd;
+  --color-lime-200: #eaf37a;
+  --color-lime-300: #d6e520;
+  --color-lime-400: #cbd810;
+  --color-lime-500: #aab60c;
+  --color-lime-600: #869009;
+
+  /* --- Lemon: warm highlight ----------------------------- */
+  --color-lemon-50:  #fffaeb;
+  --color-lemon-100: #fef3d2;
+  --color-lemon-200: #fae188;
+  --color-lemon-300: #fcc93f;
+  --color-lemon-400: #fcbe11;
+  --color-lemon-500: #d89a06;
+  --color-lemon-600: #a97705;
+
+  /* --- Clay: warm earth ---------------------------------- */
+  --color-clay-50:  #fef6f0;
+  --color-clay-100: #fdede2;
+  --color-clay-200: #fcc9ab;
+  --color-clay-300: #f79b63;
+  --color-clay-400: #ee6f24;
+  --color-clay-500: #c2521b;
+  --color-clay-600: #9a4116;
+
+  /* --- Sky: informational -------------------------------- */
+  --color-sky-50:  #f2f8ff;
+  --color-sky-100: #e6f1fe;
+  --color-sky-200: #bedffe;
+  --color-sky-300: #7fbdfb;
+  --color-sky-400: #3b8ef0;
+  --color-sky-500: #1e6fd0;
+
+  /* --- Iris: secondary chips ----------------------------- */
+  --color-iris-50:  #f5f2ff;
+  --color-iris-100: #e9e4ff;
+  --color-iris-200: #cfc4fd;
+  --color-iris-300: #a78bfa;
+  --color-iris-400: #8b5cf6;
+  --color-iris-500: #7034e8;
+
+  /* --- Brick: destructive (natural, not fire-engine) ----- */
+  --color-brick-50:  #fdf4f2;
+  --color-brick-100: #fbe3dd;
+  --color-brick-200: #f3bdb0;
+  --color-brick-300: #e08b78;
+  --color-brick-400: #cc5b44;
+  --color-brick-500: #b03f2c;
+  --color-brick-600: #8c3223;
+
+  /* --- Re-tone Tailwind's grey to oat --------------------
+     473 existing `gray-*` utilities inherit the warm palette
+     from here, so nothing in the markup has to change to lose
+     the cold blue cast.                                     */
+  --color-gray-50:  #fefdfb;
+  --color-gray-100: #f6f4ef;
+  --color-gray-200: #e7e3da;
+  --color-gray-300: #dad4c8;
+  --color-gray-400: #9f9b93;
+  --color-gray-500: #85817a;
+  --color-gray-600: #6b6862;
+  --color-gray-700: #55534e;
+  --color-gray-800: #302f2c;
+  --color-gray-900: #232220;
+  --color-gray-950: #191816;
+
+  /* --- Type ---------------------------------------------- */
+  --font-sans:  var(--font-jakarta, "Plus Jakarta Sans"), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-instrument, "Instrument Serif"), ui-serif, Georgia, serif;
+  --font-mono:  var(--font-mono-ui, "JetBrains Mono"), ui-monospace, SFMono-Regular, monospace;
+
+  /* Radii — imagine.art leans on 12px and 16px, with true
+     pills for controls and chips.                           */
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-2xl:  24px;
+  --radius-3xl:  32px;
+  --radius-4xl:  40px;
+
+  /* Elevation — tinted with the warm ink, never pure black,
+     so shadows read as depth rather than dirt.              */
+  --shadow-xs: 0 1px 2px rgb(29 28 26 / 0.05);
+  --shadow-sm: 0 1px 3px rgb(29 28 26 / 0.06), 0 1px 2px -1px rgb(29 28 26 / 0.05);
+  --shadow-md: 0 4px 12px -2px rgb(29 28 26 / 0.07), 0 2px 4px -2px rgb(29 28 26 / 0.04);
+  --shadow-lg: 0 12px 28px -6px rgb(29 28 26 / 0.10), 0 4px 10px -4px rgb(29 28 26 / 0.05);
+  --shadow-xl: 0 24px 56px -12px rgb(29 28 26 / 0.14), 0 8px 20px -8px rgb(29 28 26 / 0.06);
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   2. SEMANTIC TOKENS
+   ------------------------------------------------------------
+   Components reference these, not raw palette steps, so the
+   light/dark split lives in exactly one place.
+   ============================================================ */
+
+:root {
+  --canvas:      #fefdfb;
+  --surface:     #ffffff;
+  --surface-2:   #f6f4ef;
+  --surface-3:   #e7e3da;
+  --line:        #e7e3da;
+  --line-strong: #dad4c8;
+
+  --ink:         #1d1c1a;
+  --ink-muted:   #55534e;
+  --ink-subtle:  #6f6b65;   /* 5.21:1 on canvas */
+  --ink-faint:   #8a867e;   /* decorative / large text only */
+
+  --brand:         #367a5c;   /* white label 5.13:1, as text 5.04:1 */
+  --brand-hover:   #2a6349;
+  --brand-ink:     #ffffff;
+  --brand-wash:    #f1f7f4;
+  --brand-edge:    #bddccd;
+
+  --accent:        #cbd810;
+  --accent-hover:  #d6e520;
+  --accent-ink:    #232220;
+
+  --highlight:     #fcbe11;
+
+  /* Dark-on-light page furniture */
+  --radius: 0.75rem;
+
+  /* shadcn bridge — retuned onto the oat/moss system */
+  --background: #fefdfb;
+  --foreground: #1d1c1a;
+  --card: #ffffff;
+  --card-foreground: #1d1c1a;
+  --popover: #ffffff;
+  --popover-foreground: #1d1c1a;
+  --primary: #367a5c;
+  --primary-foreground: #ffffff;
+  --secondary: #f1efe8;
+  --secondary-foreground: #302f2c;
+  --muted: #f6f4ef;
+  --muted-foreground: #85817a;
+  --accent-bg: #f1f7f4;
+  --accent-foreground: #285744;
+  --destructive: #b03f2c;
+  --border: #e7e3da;
+  --input: #e7e3da;
+  --ring: #3e8968;
+  --chart-1: #367a5c;
+  --chart-2: #cbd810;
+  --chart-3: #fcbe11;
+  --chart-4: #ee6f24;
+  --chart-5: #3b8ef0;
+  --sidebar: #faf9f5;
+  --sidebar-foreground: #1d1c1a;
+  --sidebar-primary: #367a5c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1efe8;
+  --sidebar-accent-foreground: #302f2c;
+  --sidebar-border: #e7e3da;
+  --sidebar-ring: #3e8968;
+}
+
+.dark {
+  /* Warm charcoal, not blue-black — the dark theme is the same
+     paper, dimmed, so the hue never jumps between modes.      */
+  --canvas:      #141311;
+  --surface:     #1d1c1a;
+  --surface-2:   #24231f;
+  --surface-3:   #2d2b27;
+  --line:        #302f2c;
+  --line-strong: #3e3b36;
+
+  --ink:         #f9f8f6;
+  --ink-muted:   #bdb8ae;
+  --ink-subtle:  #8f8b82;
+  --ink-faint:   #6e6a63;
+
+  --brand:         #63a488;
+  --brand-hover:   #93c3ac;
+  --brand-ink:     #10201a;
+  --brand-wash:    #1b2c25;
+  --brand-edge:    #2a5744;
+
+  --accent:        #d6e520;
+  --accent-hover:  #eaf37a;
+  --accent-ink:    #191816;
+
+  --highlight:     #fcc93f;
+
+  --background: #141311;
+  --foreground: #f9f8f6;
+  --card: #1d1c1a;
+  --card-foreground: #f9f8f6;
+  --popover: #24231f;
+  --popover-foreground: #f9f8f6;
+  --primary: #63a488;
+  --primary-foreground: #10201a;
+  --secondary: #2d2b27;
+  --secondary-foreground: #f9f8f6;
+  --muted: #24231f;
+  --muted-foreground: #8f8b82;
+  --accent-bg: #1b2c25;
+  --accent-foreground: #93c3ac;
+  --destructive: #cc5b44;
+  --border: #302f2c;
+  --input: #3e3b36;
+  --ring: #3e8968;
+  --sidebar: #1d1c1a;
+  --sidebar-foreground: #f9f8f6;
+  --sidebar-primary: #63a488;
+  --sidebar-primary-foreground: #10201a;
+  --sidebar-accent: #2d2b27;
+  --sidebar-accent-foreground: #f9f8f6;
+  --sidebar-border: #302f2c;
+  --sidebar-ring: #3e8968;
+}
+
+/* Expose semantic tokens as utilities: bg-canvas, text-ink, … */
+@theme inline {
+  --color-canvas:      var(--canvas);
+  --color-surface:     var(--surface);
+  --color-surface-2:   var(--surface-2);
+  --color-surface-3:   var(--surface-3);
+  --color-line:        var(--line);
+  --color-line-strong: var(--line-strong);
+
+  --color-ink:         var(--ink);
+  --color-ink-muted:   var(--ink-muted);
+  --color-ink-subtle:  var(--ink-subtle);
+  --color-ink-faint:   var(--ink-faint);
+
+  --color-brand:       var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-ink:   var(--brand-ink);
+  --color-brand-wash:  var(--brand-wash);
+  --color-brand-edge:  var(--brand-edge);
+
+  --color-accent-lime: var(--accent);
+  --color-accent-ink:  var(--accent-ink);
+  --color-highlight:   var(--highlight);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent-bg);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ============================================================
+   3. BASE
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas text-ink;
+    font-synthesis-weight: none;
+    /* Tabular figures everywhere numbers sit beside each other:
+       progress %, timecodes, file sizes.                       */
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Headings stay under 600. imagine.art never goes heavier,
+     and at display sizes the extra weight only adds noise.   */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.021em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background-color: var(--brand-edge);
+    color: var(--ink);
+  }
+
+  /* One focus treatment for the whole app */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  input, textarea, select, button { font: inherit; }
+
+  /* Warm, slim scrollbars that match the paper */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--line-strong);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: var(--ink-faint); background-clip: content-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================
+   4. TYPE UTILITIES
+   ============================================================ */
+
+/* Display headline — tight, optically corrected, never bold */
+.text-display {
+  font-weight: 600;
+  letter-spacing: -0.034em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+/* Editorial accent. Instrument Serif is imagine.art's counterpoint
+   to their geometric sans; used on one or two words, never a
+   whole heading. */
+.text-editorial {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+/* Eyebrow / micro-label. Positive tracking, mono, uppercase —
+   the pattern imagine.art uses above every section. */
+.text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.text-label {
+  font-size: 0.75rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+}
+
+.numeric { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+/* ============================================================
+   5. SURFACE + CONTROL PRIMITIVES
+   ============================================================ */
+
+/* The standard card: paper on paper, defined by a hairline
+   rather than a heavy shadow. */
+.surface-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+/* Cards that respond to the pointer — used in grids */
+.surface-card-interactive {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.2s var(--ease-out-soft),
+              box-shadow 0.25s var(--ease-out-soft),
+              transform 0.25s var(--ease-out-soft);
+}
+.surface-card-interactive:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Inset well — for panels that sit *below* the page plane
+   (transcript list, preview stage, code-ish regions). */
+.surface-well {
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+/* Primary action. Solid moss, quiet lift on hover. */
+.btn-brand {
+  background-color: var(--brand);
+  color: var(--brand-ink);
+  border-radius: var(--radius-md);
+  font-weight: 550;
+  transition: background-color 0.18s var(--ease-out-soft),
+              box-shadow 0.2s var(--ease-out-soft),
+              transform 0.2s var(--ease-out-soft);
+}
+.btn-brand:hover:not(:disabled) {
+  background-color: var(--brand-hover);
+  box-shadow: var(--shadow-md);
+}
+.btn-brand:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.btn-brand:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* The Clay move: chartreuse fill with dark ink on top. Reserved
+   for the single most important action on a screen. */
+.btn-accent {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color 0.18s var(--ease-out-soft),
+              box-shadow 0.2s var(--ease-out-soft),
+              transform 0.2s var(--ease-out-soft);
+}
+.btn-accent:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  box-shadow: 0 8px 20px -8px rgb(203 216 16 / 0.55);
+}
+.btn-accent:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+.btn-accent:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Neutral secondary */
+.btn-quiet {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: background-color 0.18s var(--ease-out-soft),
+              border-color 0.18s var(--ease-out-soft);
+}
+.btn-quiet:hover:not(:disabled) {
+  background-color: var(--surface-2);
+  border-color: var(--ink-faint);
+}
+
+/* Chips / badges — full pill, wash background, saturated text */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 999px;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+/* ============================================================
+   6. TEXTURE
+   ------------------------------------------------------------
+   Clay's pages never sit on flat white. Two very low-contrast
+   treatments give the paper some tooth without ever competing
+   with content.
+   ============================================================ */
+
+/* Fine grain, ~2% opacity. Reads as paper fibre, not noise. */
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark .bg-grain::before { opacity: 0.04; }
+
+/* Engineering grid — used behind the hero and the processing
+   stage to suggest a workspace. */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+/* Soft aurora wash — moss and lemon bleeding in from the edges.
+   This is what keeps the light theme from feeling clinical. */
+.bg-aurora {
+  background-image:
+    radial-gradient(ellipse 60% 50% at 12% 0%,  color-mix(in oklab, var(--brand) 12%, transparent), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 88% 8%,  color-mix(in oklab, var(--highlight) 11%, transparent), transparent 62%),
+    radial-gradient(ellipse 70% 45% at 50% 100%, color-mix(in oklab, var(--accent) 8%, transparent), transparent 64%);
+}
+
+/* Divider that fades at both ends rather than stopping hard */
+.rule-fade {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--line-strong), transparent);
+}
+
+/* Focus ring for custom controls that aren't <button> */
+.ring-brand-soft {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand) 22%, transparent);
+}
+
+/* Marquee for the style ticker */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+.animate-marquee:hover { animation-play-state: paused; }
+
+/* Gentle breathing pulse for live/processing indicators */
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.88); }
+}
+.animate-soft-pulse { animation: softPulse 1.8s var(--ease-out-soft) infinite; }
+
+/* Indeterminate shimmer for progress bars awaiting a number */
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(300%); }
+}
+.animate-shimmer { animation: shimmer 1.9s var(--ease-out-soft) infinite; }
+
+/* ============================================
+   Animation Utilities
+   ============================================ */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Load animations (play once on mount) */
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out both;
+  animation-delay: var(--stagger, 0s);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out both;
+  animation-delay: var(--stagger, 0s);
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out both;
+  animation-delay: var(--stagger, 0s);
+}
+
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: var(--stagger, 0s);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition-delay: var(--stagger, 0s);
+}
+
+.reveal-scale.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Caption animation previews */
+@keyframes captionHighlight {
+  0% { color: var(--caption-primary); }
+  50% { color: var(--caption-highlight); }
+  100% { color: var(--caption-primary); }
+}
+
+@keyframes captionKaraoke {
+  0% { background-size: 0% 100%; }
+  100% { background-size: 100% 100%; }
+}
+
+@keyframes captionScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes captionBounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+.animate-caption-highlight {
+  animation: captionHighlight 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-caption-karaoke {
+  background: linear-gradient(
+    90deg,
+    var(--caption-highlight) 50%,
+    var(--caption-primary) 50%
+  );
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: captionKaraoke 2s linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-caption-scale {
+  display: inline-block;
+  animation: captionScale 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-caption-bounce {
+  display: inline-block;
+  animation: captionBounce 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes captionPop {
+  0%, 100% {
+    transform: scale(1);
+    color: var(--caption-primary);
+  }
+  40% {
+    transform: scale(1.15);
+    color: var(--caption-highlight);
+  }
+  60% {
+    transform: scale(1.05);
+    color: var(--caption-highlight);
+  }
+}
+
+@keyframes captionGlow {
+  0%, 100% {
+    color: var(--caption-primary);
+    filter: drop-shadow(0 0 0px transparent);
+  }
+  50% {
+    color: var(--caption-highlight);
+    filter: drop-shadow(0 0 8px var(--caption-highlight)) drop-shadow(0 0 16px var(--caption-highlight));
+  }
+}
+
+.animate-caption-pop {
+  display: inline-block;
+  animation: captionPop 2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-caption-glow {
+  display: inline-block;
+  animation: captionGlow 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes captionBox {
+  0%, 100% {
+    background-color: transparent;
+    color: var(--caption-primary);
+    box-shadow: none;
+    transform: scale(1);
+  }
+  30%, 70% {
+    background-color: var(--caption-highlight);
+    color: var(--caption-primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.06);
+  }
+}
+
+.animate-caption-box {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  animation: captionBox 2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Weight transition animations */
+@keyframes weightLightToBold {
+  0%, 100% {
+    font-weight: 300;
+    opacity: 0.75;
+  }
+  50% {
+    font-weight: 900;
+    opacity: 1;
+  }
+}
+
+@keyframes weightBoldToLight {
+  0%, 100% {
+    font-weight: 900;
+    opacity: 0.8;
+  }
+  50% {
+    font-weight: 300;
+    opacity: 1;
+  }
+}
+
+.animate-weight-light-to-bold {
+  animation: weightLightToBold 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.animate-weight-bold-to-light {
+  animation: weightBoldToLight 2s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Processing view scan-line animation */
+@keyframes scanLine {
+  from { left: 0%; }
+  to { left: 100%; }
+}
+
+.animate-scan-line {
+  animation: scanLine 2.5s linear infinite;
+}
+
+/* Real-time active word state for video overlay */
+.caption-word-active-pop {
+  display: inline-block;
+  transform: scale(1.16);
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.1s ease;
+}
+
+.caption-word-active-bounce {
+  display: inline-block;
+  transform: translateY(-5px) scale(1.18);
+  transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.1s ease;
+}
+
+.caption-word-active-scale {
+  display: inline-block;
+  transform: scale(1.12);
+  transition: transform 0.15s ease, color 0.1s ease;
+}
+
+.caption-word-active-glow {
+  display: inline-block;
+  filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 18px currentColor);
+  transition: filter 0.15s ease, color 0.1s ease;
+}
+
+.caption-word-active-box {
+  display: inline-block;
+  border-radius: 6px;
+  padding: 1px 7px;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+

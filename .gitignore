@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+.next/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.claude/
+.pytest_cache/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data
+backend/data/
+frontend/data/
+frontend/prisma/data/
+*.db
+*.db-journal
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+package-lock.json

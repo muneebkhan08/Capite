@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model CaptionJob {
+  id               String   @id @default(cuid())
+  displayName      String?
+  originalFileName String
+  fileSize         Int
+  durationSeconds  Float?
+  captionStyle     String   @default("hormozi")
+  captionPosition  Int      @default(10)
+  customFont       String?
+  fontWeight       String?
+  weightTransition String?
+  fontStyle        String?
+  textCasing       String?
+  primaryColor     String?
+  highlightColor   String?
+  outlineColor     String?
+  backgroundColor  String?
+  status           String   @default("pending")
+  progress         Int      @default(0)
+  currentPhase     String?
+  language         String?
+  errorMessage     String?
+  backendJobId     String?  @unique
+  processingTimeMs Int?
+  outputFileSize   Int?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}

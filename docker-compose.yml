@@ -1,0 +1,36 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - caption-data:/app/data
+    environment:
+      - FRONTEND_URL=http://localhost:3000
+      - MAX_FILE_SIZE_MB=500
+      - MAX_CONCURRENT_JOBS=2
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - BACKEND_URL=http://backend:5000
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
+      - DATABASE_URL=file:/app/data/captions.db
+    volumes:
+      - sqlite-data:/app/data
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  caption-data:
+  sqlite-data:

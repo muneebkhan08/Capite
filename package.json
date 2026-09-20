@@ -1,0 +1,20 @@
+{
+  "name": "capite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Capite — Free, open-source AI video captions & animated subtitles studio",
+  "scripts": {
+    "setup": "cd backend && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt && cd ../frontend && npm install && DATABASE_URL=file:./data/captions.db npx prisma generate && DATABASE_URL=file:./data/captions.db npx prisma db push",
+    "dev": "make dev",
+    "dev:backend": "cd backend && source .venv/bin/activate && python app.py",
+    "dev:frontend": "cd frontend && DATABASE_URL=file:./data/captions.db npm run dev",
+    "dev:docker": "docker compose -f docker-compose.dev.yml up --build",
+    "start": "docker compose up -d",
+    "stop": "docker compose down",
+    "logs": "docker compose logs -f",
+    "test": "cd backend && PYTHONPATH=. python -m pytest tests/ -v",
+    "lint": "cd frontend && npm run lint",
+    "build": "cd frontend && npm run build",
+    "clean": "rm -rf backend/data/temp/* backend/data/output/* frontend/.next"
+  }
+}

@@ -1,0 +1,38 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="capite-glow" x1="20" y1="20" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#367a5c" />
+      <stop offset="50%" stop-color="#3e8968" />
+      <stop offset="100%" stop-color="#cbd810" />
+    </linearGradient>
+    <linearGradient id="capite-bar" x1="60" y1="40" x2="100" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#cbd810" />
+      <stop offset="100%" stop-color="#4ade80" />
+    </linearGradient>
+  </defs>
+
+  <!-- Base dark squircle -->
+  <rect width="120" height="120" rx="28" fill="#141311" />
+  <rect x="1" y="1" width="118" height="118" rx="27" stroke="#2c2a26" stroke-width="1.5" />
+
+  <!-- Outer subtle bloom -->
+  <circle cx="60" cy="60" r="38" fill="#3e8968" opacity="0.15" />
+
+  <!-- Styled "C" ribbon curve -->
+  <path
+    d="M 76 34
+       C 48 24, 26 42, 26 60
+       C 26 78, 48 96, 76 86
+       C 64 81, 52 72, 50 60
+       C 48 48, 62 39, 76 34 Z"
+    fill="url(#capite-glow)"
+  />
+
+  <!-- Dynamic Animated Caption Bars coming out from C center -->
+  <rect x="58" y="52" width="22" height="5" rx="2.5" fill="url(#capite-bar)" />
+  <rect x="58" y="63" width="34" height="5" rx="2.5" fill="#fefdfb" opacity="0.9" />
+  <rect x="58" y="74" width="16" height="5" rx="2.5" fill="#cbd810" opacity="0.85" />
+
+  <!-- Subtle inner shine -->
+  <circle cx="42" cy="46" r="3" fill="#ffffff" opacity="0.8" />
+</svg>
