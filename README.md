@@ -4,15 +4,15 @@
   </a>
 </p>
 
-<h1 align="center">Capite — Open-Source AI Video Caption Generator & Auto Subtitle Studio</h1>
+<h1 align="center">Capite — Free, Open-Source AI Video Caption Generator</h1>
 
 <p align="center">
-  <strong>The Free, Privacy-First Alternative to Submagic, CapCut, and OpusClip for TikTok, Instagram Reels & YouTube Shorts</strong>
+  <strong>A self-hosted animated subtitle studio for TikTok, Instagram Reels, YouTube Shorts, podcasts, and social video</strong>
 </p>
 
 <p align="center">
-  Generate viral, word-animated captions for your videos in seconds with local AI.<br/>
-  <strong>27 trending motion styles</strong> &bull; <strong>Interactive word-level transcript editor</strong> &bull; <strong>Instant in-place re-rendering</strong> &bull; <strong>Multi-format export (MP4, SRT, VTT, TXT, ASS)</strong> &bull; <strong>100+ languages</strong> &bull; <strong>100% self-hosted & private</strong> &bull; <strong>Zero subscriptions, free forever</strong>.
+  Turn spoken video into editable, word-timed animated captions with local AI.<br/>
+  <strong>27 motion styles</strong> &bull; <strong>Interactive word-level transcript editor</strong> &bull; <strong>Fast in-place re-rendering</strong> &bull; <strong>MP4, SRT, VTT, TXT & ASS export</strong> &bull; <strong>100+ languages</strong> &bull; <strong>Self-hosted and private</strong> &bull; <strong>MIT licensed</strong>.
 </p>
 
 <p align="center">
@@ -32,40 +32,48 @@
   <img src="docs/screenshots/capite-hero-landing.jpg" alt="Capite — Best Open Source AI Video Caption Generator Studio Interface" width="950" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);">
 </p>
 
+<p align="center">
+  <a href="#-quick-start-guide"><strong>Get started</strong></a> &bull;
+  <a href="#-why-capite-competitor-comparison-matrix">Compare alternatives</a> &bull;
+  <a href="docs/API.md">Read the API docs</a> &bull;
+  <a href="llms.txt">AI assistant guide</a>
+</p>
+
 ---
 
 ## 📑 Table of Contents
 
 1. [About Capite](#-about-capite)
-2. [Why Capite? (Competitor Comparison Matrix)](#-why-capite-competitor-comparison-matrix)
-3. [Interface & Studio Showcase](#-interface--studio-showcase)
-4. [Key Features & Capabilities](#-key-features--capabilities)
-5. [27 Built-In Viral Caption Styles](#-27-built-in-viral-caption-styles)
-6. [Quick Start Guide](#-quick-start-guide)
+2. [Who Capite Is For](#-who-capite-is-for)
+3. [Why Capite? (Competitor Comparison Matrix)](#-why-capite-competitor-comparison-matrix)
+4. [Interface & Studio Showcase](#-interface--studio-showcase)
+5. [Key Features & Capabilities](#-key-features--capabilities)
+6. [27 Built-In Viral Caption Styles](#-27-built-in-viral-caption-styles)
+7. [Quick Start Guide](#-quick-start-guide)
    - [Docker Compose Setup (Recommended)](#1-docker-compose-recommended)
    - [Local Development Setup](#2-local-development-setup)
-7. [Complete Usage Guide](#-complete-usage-guide)
-8. [Subtitle & Video Export Formats (.SRT, .VTT, .TXT, .ASS)](#-subtitle--video-export)
-9. [System Architecture](#-system-architecture)
-10. [REST API Reference](#-rest-api-reference)
-11. [Configuration & Environment Variables](#-configuration--environment-variables)
-12. [Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
-13. [Supported Use Cases & Search Keywords](#-supported-use-cases--search-keywords)
-14. [Documentation Index](#-documentation-index)
-15. [Creator & Contact](#-creator--contact)
-16. [License](#-license)
+8. [Complete Usage Guide](#-complete-usage-guide)
+9. [Subtitle & Video Export Formats (.SRT, .VTT, .TXT, .ASS)](#-subtitle--video-export)
+10. [System Architecture](#-system-architecture)
+11. [REST API Reference](#-rest-api-reference)
+12. [Configuration & Environment Variables](#-configuration--environment-variables)
+13. [Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
+14. [Supported Use Cases](#-supported-use-cases)
+15. [Documentation Index](#-documentation-index)
+16. [Creator & Contact](#-creator--contact)
+17. [License](#-license)
 
 ---
 
 ## ⚡ About Capite
 
-**Capite** is a modern, high-performance, **open-source AI video caption generator** and animated subtitle studio built for content creators, video editors, podcasters, and developers. Built from the ground up to bring viral, word-animated typography to your short-form videos (TikTok, Instagram Reels, YouTube Shorts) and long-form video projects without costly SaaS subscriptions or cloud privacy risks.
+**Capite** is a free, self-hosted **open-source AI video caption generator** and animated subtitle studio. It is for creators, video editors, podcasters, and developers who want word-timed captions for short-form video (TikTok, Instagram Reels, and YouTube Shorts) or longer videos without sending footage to a third-party caption service.
 
 ### Why Capite is Different
 - **100% Free & Open Source**: Full source code access under the permissive MIT License.
-- **Zero Cloud Subscriptions**: No \$20-\$50/month fees, no credits system, no paywalls.
+- **No Capite Subscription**: The code is MIT licensed; run it on your own computer or infrastructure without a Capite account or per-video credits.
 - **Zero Watermarks**: Clean, broadcast-quality video exports with no forced branding.
-- **Zero Video Caps**: Process unlimited videos with no duration or file size restrictions.
+- **Configurable Instance Limits**: File-size, duration, concurrency, and cleanup limits are yours to set for your hardware and deployment.
 - **100% Private & Self-Hosted**: All speech-to-text transcription and video rendering occurs locally on your hardware. Your footage never touches third-party servers.
 
 ### The Production Stack
@@ -73,26 +81,29 @@
 - **Motion Typography Engine**: `pysubs2` + `FFmpeg libass` rendering broadcast-grade ASS subtitle animations directly into high-definition video at visually lossless quality (CRF 18).
 - **Web Studio**: Next.js 16 (React 19) App Router, Tailwind CSS v4, and a warm paper-inspired Oat & Clay design system with responsive dark and light modes.
 
+## 👋 Who Capite Is For
+
+Choose Capite when you need a **free caption generator**, an **open-source subtitle generator**, or a **self-hosted alternative to cloud caption tools**:
+
+- **Short-form creators** who want animated, word-highlight captions for TikTok, Instagram Reels, and YouTube Shorts.
+- **Podcast and interview editors** who need an editable transcript, accurate word timing, and standard subtitle exports.
+- **Privacy-conscious teams** that cannot upload client footage to a third-party service.
+- **Developers and agencies** who want to run, audit, customize, or integrate a local `faster-whisper` and FFmpeg caption workflow.
+
 ---
 
 ## ⚖️ Why Capite? Competitor Comparison Matrix
 
-Looking for the **best open-source caption generator** or a **free alternative to Submagic, CapCut, OpusClip, or AutoCut**? Here is how Capite compares directly against commercial closed-source platforms:
+Looking for a **Submagic alternative**, **CapCut auto captions alternative**, **OpusClip alternative**, or **AutoCut alternative**? Capite covers the captioning and animated-subtitle workflow with software you can inspect and run yourself.
 
-| Feature / Capability | **Capite (Open-Source)** | **Submagic** | **CapCut** | **OpusClip** | **Veed.io / AutoCut** |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **Pricing / Plan** | 🟢 **100% Free Forever** | 🔴 \$20 – \$50 / month | 🟡 Freemium (\$9.99+/mo) | 🔴 \$19 – \$49 / month | 🔴 \$18 – \$38 / month |
-| **Open Source (MIT)** | 🟢 **Yes (Self-Hosted)** | 🔴 No (Proprietary) | 🔴 No (Proprietary) | 🔴 No (Proprietary) | 🔴 No (Proprietary) |
-| **Data Privacy & Security** | 🟢 **100% Local (Zero Cloud)** | 🔴 Video Upload Required | 🔴 Video Upload Required | 🔴 Video Upload Required | 🔴 Video Upload Required |
-| **Watermarks** | 🟢 **Zero Watermarks** | 🔴 Watermarked on Free Plan | 🟡 Watermark on templates | 🔴 Watermarked on Free Plan | 🔴 Watermarked on Free Plan |
-| **Monthly Video Limits** | 🟢 **Unlimited (No Caps)** | 🔴 20–60 mins/month cap | 🟡 Cloud storage caps | 🔴 Credit/minute quotas | 🔴 10–30 mins/month |
-| **Speech-to-Text Engine** | 🟢 **faster-whisper (Offline AI)**| 🟡 Cloud Whisper API | 🟡 Cloud Speech API | 🟡 Cloud Whisper API | 🟡 Cloud Speech API |
-| **Word-Level Timestamp Accuracy** | 🟢 **Millisecond Precision** | 🟢 Supported | 🟡 Segment / sentence level | 🟡 Clip level | 🟢 Supported |
-| **Viral Motion Styles** | 🟢 **27 Built-In Presets** | 🟡 Limited in Starter | 🟡 Preset templates | 🟡 Fixed video templates | 🟡 Limited in basic |
-| **Interactive Word Transcript Editor** | 🟢 **Click-to-Seek Word Chips** | 🟢 Web Editor | 🟡 Timeline track | 🔴 Repurposing only | 🟢 Basic text box |
-| **Font & Physics Customization** | 🟢 **Weights, Shaders, Easing** | 🔴 Fixed style packs | 🟡 Basic font selection | 🔴 Minimal customization | 🟡 Basic presets |
-| **Subtitle Export (.SRT, .VTT, .ASS)** | 🟢 **Free (.SRT, .VTT, .TXT, .ASS)**| 🔴 Paid addon / locked | 🟡 Limited to MP4/TXT | 🟡 Paid tiers | 🔴 Paid tiers only |
-| **Offline / Air-Gapped Operation** | 🟢 **Yes (Docker & Local)** | 🔴 Requires Internet | 🔴 Requires Cloud Sync | 🔴 Requires Internet | 🔴 Requires Internet |
+| If you are considering | Capite is a strong fit when you need |
+|---|---|
+| **Submagic** | A self-hosted, MIT-licensed caption studio with local processing, editable word timing, and animated styles. |
+| **CapCut auto captions** | A dedicated caption workflow with standard SRT, VTT, TXT, ASS, and burned-in MP4 export. |
+| **OpusClip** | Caption generation and subtitle styling for footage you have already selected or edited. Capite does not claim to replace automated clip selection. |
+| **AutoCut, VEED, or Captions** | A local, auditable workflow where your deployment settings—not a vendor plan—control file, duration, and concurrency limits. |
+
+Capite does not make claims about competitors' current pricing or feature sets; those change often. Compare the workflow that matters to you: local ownership, caption editing, motion styling, subtitle exports, and self-hosting.
 
 ---
 
@@ -384,17 +395,17 @@ Copy `.env.example` to `.env` to configure your instance:
 ### What is Capite?
 **Capite** is a free, open-source AI video caption generator and auto subtitle editor that automatically transcribes speech and burns animated, viral typography into videos for TikTok, Instagram Reels, YouTube Shorts, and podcasts.
 
-### What makes Capite the best open-source AI video caption generator?
-Capite combines the accuracy of OpenAI's Whisper (via `faster-whisper`) with a broadcast-grade motion typography engine (`pysubs2` + `FFmpeg libass`) and a modern Next.js 16 web studio. Unlike commercial tools like Submagic, CapCut, or OpusClip, Capite is 100% free, open-source (MIT licensed), runs locally on your machine, has no video duration limits, and produces zero watermarks.
+### What makes Capite a good open-source AI video caption generator?
+Capite combines local `faster-whisper` transcription with a motion typography engine built on `pysubs2` and FFmpeg `libass`, plus a Next.js web studio for transcript editing. It is MIT licensed, self-hosted, has no Capite account or per-video credit system, and produces exports without a forced Capite watermark. Your instance's file and duration limits remain configurable for your hardware.
 
 ### How does Capite compare to Submagic, CapCut, and OpusClip?
-Submagic and OpusClip are paid cloud-based subscription services that charge between \$20 to \$50 per month, limit your monthly video minutes, and require uploading your video files to third-party servers. CapCut offers auto-captions but limits typography customization and requires cloud connectivity. Capite runs entirely on your local machine or Docker container, respects your privacy, gives you 27 trending viral motion styles, provides full word-level editing, and is completely free forever.
+Capite is an open-source, self-hosted option for the caption-generation portion of a video workflow. It gives you local `faster-whisper` transcription, 27 animated styles, word-level editing, and MP4/SRT/VTT/TXT/ASS exports. Product capabilities and prices for Submagic, CapCut, OpusClip, and other services change regularly, so check their current plans for a like-for-like comparison.
 
 ### Can I generate subtitles for TikTok, Instagram Reels, and YouTube Shorts?
 Yes! Capite is specifically optimized for vertical short-form video formats (9:16) as well as horizontal long-form videos (16:9). You can customize caption placement, font size, animation styles, and colors to match popular TikTok, Instagram Reel, and YouTube Short trends (such as Hormozi, MrBeast, and Submagic styles).
 
-### Is Capite completely free without watermarks or export limits?
-Yes. Capite is 100% free and open-source under the MIT License. There are no watermarks, no minute limits, no export caps, and no paywalls. You can process as many videos as your local hardware allows.
+### Is Capite free and watermark-free?
+Yes. Capite is open-source under the MIT License, has no Capite subscription, paywall, per-video credit system, or forced Capite watermark. Default self-hosted limits are 500 MB and 30 minutes, and you can change them with environment variables to fit your hardware.
 
 ### Does Capite work offline without an internet connection or API keys?
 Yes. Capite uses `faster-whisper`, an optimized local CTranslate2 implementation of OpenAI's Whisper model. Once the Docker container or local environment is initialized and the Whisper model weights are downloaded, transcription and rendering run entirely offline without needing an internet connection or an OpenAI API key.
@@ -412,20 +423,15 @@ Capite supports over 100 languages via Whisper AI, including English, Spanish, P
 
 ---
 
-## 🔍 Supported Use Cases & Search Keywords
+## 🔍 Supported Use Cases
 
-Capite satisfies search intent across popular creator, video editing, and AI transcription queries:
+Capite is useful for creating **AI video captions**, **automatic subtitles**, and animated social-video text without a SaaS account. Common workflows include:
 
-- **AI Video Caption Generator**: Automated speech recognition and animated typography.
-- **Open-Source Caption Generator**: 100% self-hosted and free alternative to cloud SaaS.
-- **Free Submagic Alternative**: Word-level bounce, karaoke, and highlight subtitle animations.
-- **CapCut Auto Captions Alternative**: Local, watermark-free subtitle generator for Mac, Windows, and Linux.
-- **OpusClip & AutoCut Alternative**: High-retention short-form video captions.
-- **Alex Hormozi Style Captions**: High-contrast yellow/cyan word highlight animations.
-- **MrBeast Style Subtitles**: Pop and bounce gaming animations with custom colors.
-- **Podcast Video Subtitles**: Multi-speaker transcription with timing adjustments.
-- **TikTok & Instagram Reels Subtitles**: Vertical 9:16 video formatting with adjustable safe zones.
-- **Whisper Subtitle Generator**: Millisecond-accurate speech-to-text with local CTranslate2 acceleration.
+- **Alex Hormozi-style and MrBeast-style captions** with word highlights, bounce, pop, and karaoke motion.
+- **Podcast video subtitles** with an editable, word-timed transcript.
+- **TikTok, Instagram Reels, and YouTube Shorts captions** with vertical-video-safe caption placement.
+- **Whisper subtitle generation** with local CTranslate2 acceleration through `faster-whisper`.
+- **Interchangeable caption deliverables**: a burned-in MP4, SRT for video editors and YouTube, VTT for the web, TXT for transcripts, or ASS for styled subtitles.
 
 ---
 
@@ -434,6 +440,7 @@ Capite satisfies search intent across popular creator, video editing, and AI tra
 - [ARCHITECTURE.md](ARCHITECTURE.md) — System processes, thread lifecycle, concurrency model, and data flow.
 - [docs/API.md](docs/API.md) — Full REST API specification with parameter tables, request bodies, and curl examples.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — Development setup, branch guidelines, and testing workflow.
+- [llms.txt](llms.txt) — A concise, factual guide for AI assistants and tools that evaluate Capite.
 - [frontend/DESIGN.md](frontend/DESIGN.md) — Oat & Clay design tokens, contrast ratios, and typography rules.
 
 ---

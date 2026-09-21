@@ -29,6 +29,7 @@ services:
     environment:
       - BACKEND_URL=http://backend:5000
       - NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-}
       - DATABASE_URL=file:/app/data/captions.db
     depends_on:
       - backend

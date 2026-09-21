@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "~/components/theme-provider";
 import { Header } from "~/components/header";
 import { Footer } from "~/components/footer";
+import { publicSiteUrl, repositoryUrl } from "~/lib/site";
 import "./globals.css";
 
 /* Plus Jakarta Sans carries the whole interface: geometric enough to
@@ -35,26 +36,67 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Capite — AI Video Captions & Motion Subtitles Studio",
+    default: "Capite — Free, Self-Hosted AI Video Caption Generator",
     template: "%s · Capite",
   },
   description:
-    "Capite: Add trending animated captions to any video. 27 motion styles, interactive transcript editor, word-level timing, 100+ languages. Free, open-source and self-hosted.",
+    "Free, open-source AI video caption generator. Create editable, animated subtitles with local faster-whisper transcription, 27 motion styles, and MP4/SRT/VTT/ASS exports.",
+  metadataBase: publicSiteUrl,
+  applicationName: "Capite",
+  authors: [{ name: "Muhammad Muneeb Khan", url: repositoryUrl }],
+  creator: "Muhammad Muneeb Khan",
+  publisher: "Capite",
+  category: "Video editing",
   keywords: [
     "Capite",
-    "ai captions",
-    "video subtitles",
+    "AI video caption generator",
+    "open source caption generator",
+    "self hosted subtitle generator",
     "animated captions",
     "subtitle generator",
-    "whisper transcription",
-    "open source caption studio",
     "faster-whisper",
+    "Submagic alternative",
+    "CapCut auto captions alternative",
+    "video subtitles",
   ],
+  alternates: publicSiteUrl ? { canonical: "/" } : undefined,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Capite — AI Video Captions & Motion Subtitles Studio",
+    title: "Capite — Free, Self-Hosted AI Video Caption Generator",
     description:
-      "Capite: 27 motion styles, interactive transcript editor, word-level timing, 100+ languages. Free, open-source and self-hosted.",
+      "Create editable, animated captions locally with faster-whisper, 27 motion styles, and standard subtitle exports.",
     type: "website",
+    siteName: "Capite",
+    ...(publicSiteUrl
+      ? {
+          url: publicSiteUrl.toString(),
+          images: [
+            {
+              url: "/logo.png",
+              width: 1024,
+              height: 1024,
+              alt: "Capite — open-source AI video caption generator",
+            },
+          ],
+        }
+      : {}),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Capite — Free, Self-Hosted AI Video Caption Generator",
+    description:
+      "Open-source animated captions with local faster-whisper transcription and editable word timing.",
+    ...(publicSiteUrl ? { images: ["/logo.png"] } : {}),
   },
 };
 

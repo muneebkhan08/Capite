@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use Capite in research, a publication, or a product evaluation, please cite the project."
+title: "Capite: Open-Source AI Video Caption Generator"
+version: "1.0.0"
+abstract: "A self-hosted, MIT-licensed AI video caption generator with local faster-whisper transcription, editable word timing, animated subtitle styles, and standard subtitle exports."
+authors:
+  - family-names: "Khan"
+    given-names: "Muhammad Muneeb"
+license: "MIT"
+repository-code: "https://github.com/muneebkhan08/Capite"
+keywords:
+  - "AI video captions"
+  - "animated subtitles"
+  - "faster-whisper"
+  - "self-hosted"
+  - "open source"
